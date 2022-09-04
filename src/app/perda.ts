@@ -1,4 +1,5 @@
-export interface Perda{
+export interface Perda {
+  id: number;
   data_cadastro: Date;
   nome: string;
   email: string;
@@ -6,6 +7,11 @@ export interface Perda{
   longitude: number;
   latitude: number;
   tipo_lavoura: string;
-  data_colheira: Date
+  data_colheira: Date;
   evento_ocorrido: string;
+}
+
+export interface PerdaBack {
+
+  results: Perda[];
 }

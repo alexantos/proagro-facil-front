@@ -13,7 +13,7 @@ import { MatListModule } from '@angular/material/list';
 import { PerdasComponent } from './perdas/perdas.component';
 import { PerdaComponent } from './perda/perda.component';
 import { MatTableModule } from '@angular/material/table';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent, PerdasComponent, PerdaComponent],
   imports: [
@@ -27,6 +27,7 @@ import { MatTableModule } from '@angular/material/table';
     MatSidenavModule,
     MatListModule,
     MatTableModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
