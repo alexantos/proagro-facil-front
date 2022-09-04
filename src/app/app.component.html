@@ -1,22 +1,13 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>My App</span>
-  <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button>
-</mat-toolbar>
+
 
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened>
+    <br>
+    <br>
     <mat-selection-list #shoes [multiple]="false">
       <mat-list-option routerLink="/perdas">
         Cadastro de Perda
+        <mat-icon mat-list-icon>edit_document</mat-icon>
       </mat-list-option>
       <mat-list-option >
         Gráfico de Perda
@@ -24,6 +15,19 @@
     </mat-selection-list>
   </mat-drawer>
   <mat-drawer-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>My App</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
     <div class="container">
       <router-outlet></router-outlet>
     </div>

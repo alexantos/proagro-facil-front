@@ -14,6 +14,9 @@ import { PerdasComponent } from './perdas/perdas.component';
 import { PerdaComponent } from './perda/perda.component';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [AppComponent, PerdasComponent, PerdaComponent],
   imports: [
@@ -27,7 +30,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     MatListModule,
     MatTableModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

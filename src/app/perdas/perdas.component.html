@@ -1,5 +1,8 @@
 <br>
-<h1>Perdas</h1>
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <h1>Perdas</h1>
+  <button mat-raised-button color="primary" (click)="adicionarPerda()">Adicionar</button>
+</div>
 <br>
 <div class="tabela">
   <table mat-table [dataSource]="perdas" class="mat-elevation-z8">

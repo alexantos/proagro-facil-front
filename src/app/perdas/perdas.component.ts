@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Perda, PerdaBack } from '../perda';
 
@@ -13,12 +14,9 @@ export class PerdasComponent implements OnInit {
 
   public colunas: string[] = ['nome', 'email', 'cpf', 'tipo_lavoura', 'evento_ocorrido']
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private rota: Router) {}
 
   ngOnInit(): void {
-    // this.perdas.push(
-    //   {data_cadastro: new Date(), nome: "Thulengo", email: "tchulengo@gmail.com", cpf: "12345678900", longitude: 123, latitude: 123, tipo_lavoura: "milho", data_colheira: new Date(), evento_ocorrido: "GEADA"}
-    // )
     this.api.getPerdas().subscribe(
       (perda_back: PerdaBack)=>{
         console.log(perda_back)
@@ -28,6 +26,10 @@ export class PerdasComponent implements OnInit {
         console.log(erro)
       }
     )
+  }
+
+  public adicionarPerda(): void{
+    this.rota.navigate(['perda'])
   }
 
 }
