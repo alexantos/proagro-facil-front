@@ -6,3 +6,8 @@
 .container {
   padding: 1em;
 }
+
+.menu{
+  padding-left: 2em;
+  padding-right: 2em;
+}

@@ -1,16 +1,17 @@
 
 
-<mat-drawer-container class="example-container">
+<mat-drawer-container autosize>
   <mat-drawer mode="side" opened>
     <br>
     <br>
-    <mat-selection-list #shoes [multiple]="false">
-      <mat-list-option routerLink="/perdas">
-        Cadastro de Perda
-        <mat-icon mat-list-icon>edit_document</mat-icon>
+    <mat-selection-list #shoes [multiple]="false" >
+      <mat-list-option routerLink="/perdas" >
+        <mat-icon mat-list-icon>add</mat-icon>
+        <span >Lista de Perdas</span>
       </mat-list-option>
       <mat-list-option >
-        Gráfico de Perda
+        <mat-icon mat-list-icon>insights</mat-icon>
+        <span>Gráfico</span>
       </mat-list-option>
     </mat-selection-list>
   </mat-drawer>

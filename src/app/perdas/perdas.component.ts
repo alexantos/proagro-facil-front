@@ -12,7 +12,7 @@ export class PerdasComponent implements OnInit {
 
   public perdas: Perda[] = [];
 
-  public colunas: string[] = ['nome', 'email', 'cpf', 'tipo_lavoura', 'evento_ocorrido']
+  public colunas: string[] = ['nome', 'email', 'cpf', 'tipo_lavoura', 'evento_ocorrido', 'editar']
 
   constructor(private api: ApiService, private rota: Router) {}
 
