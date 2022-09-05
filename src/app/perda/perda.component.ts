@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
+import { ConfirmacaoComponent } from '../confirmacao/confirmacao.component';
 import { Perda } from '../perda';
 
 @Component({
@@ -28,7 +30,7 @@ export class PerdaComponent implements OnInit {
 
   public lavouras: string[] = ['milho', 'soja', 'trigo', 'feijão']
 
-  constructor(private api: ApiService, private rota: Router, private rotaAtiva: ActivatedRoute) {}
+  constructor(private api: ApiService, private rota: Router, private rotaAtiva: ActivatedRoute, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     let id = Number(this.rotaAtiva.snapshot.paramMap.get('id'));
@@ -87,7 +89,29 @@ export class PerdaComponent implements OnInit {
   }
 
   excluiPerda(){
+    const dialogRef = this.dialog.open(ConfirmacaoComponent, {
+      data:{
+        titulo: 'Excluir comunicação de perda',
+        mensagem: 'Tem certeza que deseja excluir a comunicação de perda de nome ' + this.perda_formulario.controls.nome.value + ' ?',
+        confirmar: 'Excluir',
+        cancelar: 'Cancelar',
+      },
+      width: '30em'
+    });
 
+    dialogRef.afterClosed().subscribe(confirmacao => {
+      if(confirmacao){
+        this.api.excluirPerda(this.perda_formulario.controls.id.value).subscribe(
+          (resultado)=>{
+            console.log(resultado)
+            this.rota.navigate(['perdas'])
+          },
+          (erro)=>{
+            console.log(erro)
+          }
+        )
+      }
+    });
   }
 
 }

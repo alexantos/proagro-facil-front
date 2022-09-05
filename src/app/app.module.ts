@@ -21,9 +21,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ConfirmacaoComponent } from './confirmacao/confirmacao.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [AppComponent, PerdasComponent, PerdaComponent],
+  declarations: [AppComponent, PerdasComponent, PerdaComponent, ConfirmacaoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -42,6 +44,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatNativeDateModule,
     MatSelectModule,
     MatAutocompleteModule,
+    MatDialogModule
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-br' }],
   bootstrap: [AppComponent],

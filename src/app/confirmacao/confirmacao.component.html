@@ -1,0 +1,19 @@
+<div fxLayout="column">
+  <div>
+    <h2>
+      {{data.titulo}}
+    </h2>
+  </div>
+  <div>
+    <p>
+      {{data.mensagem}}
+    </p>
+  </div>
+  <br>
+  <div fxLayout="row" fxLayoutAlign="end center" fxFlex="100">
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="50">
+      <button mat-raised-button color="primary" mat-dialog-close>{{data.cancelar}}</button>
+      <button mat-raised-button color="warn" (click)="confirmar()">{{data.confirmar}}</button>
+    </div>
+  </div>
+</div>

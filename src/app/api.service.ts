@@ -28,6 +28,10 @@ export class ApiService {
     return this.http.patch<Perda>(this.url + '/perdas/' + String(perda.id)+ '/', perda);
   }
 
+  public excluirPerda(id: number): Observable<Perda> {
+    return this.http.delete<Perda>(this.url + '/perdas/' + String(id)+ '/');
+  }
+
   public pegaPelaUrl(url: string): any{
     return this.http.get<any>(url);
   }
