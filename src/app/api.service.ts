@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Grafico } from './grafico/grafico.component';
 import { Perda, PerdaBack } from './perda';
 
 @Injectable({
@@ -34,6 +35,10 @@ export class ApiService {
 
   public pegaPelaUrl(url: string): any{
     return this.http.get<any>(url);
+  }
+
+  public getGraficos(): Observable<Grafico[]>{
+    return this.http.get<Grafico[]>(this.url + '/grafico/');
   }
 
 }

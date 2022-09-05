@@ -12,6 +12,5 @@ export interface Perda {
 }
 
 export interface PerdaBack {
-
   results: Perda[];
 }
