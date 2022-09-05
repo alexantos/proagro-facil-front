@@ -29,7 +29,12 @@ export class PerdasComponent implements OnInit {
   }
 
   public adicionarPerda(): void{
-    this.rota.navigate(['perda'])
+    this.rota.navigate(['perda', 0],)
+  }
+
+  public atualizarPerda(perda: any): void{
+    console.log(perda)
+    this.rota.navigate(['perda', perda.id],)
   }
 
 }

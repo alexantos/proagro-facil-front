@@ -16,8 +16,8 @@ export class ApiService {
     return this.http.get<PerdaBack>(this.url + '/perdas/');
   }
 
-  public getPerda(id: string): Observable<Perda> {
-    return this.http.get<Perda>(this.url + '/perdas/' + String(id));
+  public getPerda(id: number): Observable<Perda> {
+    return this.http.get<Perda>(this.url + '/perdas/' + String(id) + '/');
   }
 
   public salvaPerda(perda: Perda): Observable<Perda>{
@@ -25,7 +25,7 @@ export class ApiService {
   }
 
   public atualizaPerda(perda: Perda): Observable<Perda> {
-    return this.http.patch<Perda>(this.url + '/perdas/' + String(perda.id), perda);
+    return this.http.patch<Perda>(this.url + '/perdas/' + String(perda.id)+ '/', perda);
   }
 
   public pegaPelaUrl(url: string): any{

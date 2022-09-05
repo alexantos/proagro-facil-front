@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Perda } from '../perda';
 
@@ -11,9 +11,10 @@ import { Perda } from '../perda';
 })
 export class PerdaComponent implements OnInit {
 
-  public atualizar: boolean = false;
+  public criar: boolean = false;
 
   public perda_formulario: FormGroup = new FormGroup({
+    id: new FormControl(''),
     data_cadastro: new FormControl(''),
     nome: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -27,17 +28,31 @@ export class PerdaComponent implements OnInit {
 
   public lavouras: string[] = ['milho', 'soja', 'trigo', 'feijão']
 
-  constructor(private api: ApiService, private rota: Router) {}
+  constructor(private api: ApiService, private rota: Router, private rotaAtiva: ActivatedRoute) {}
 
   ngOnInit(): void {
+    let id = Number(this.rotaAtiva.snapshot.paramMap.get('id'));
+    if (id == 0){
+      this.criar = false;
+    }else{
+      this.api.getPerda(id).subscribe(
+        (perda: Perda)=>{
+          console.log(perda)
+          this.perda_formulario.patchValue(perda)
+        },
+        (erro) => {
+          console.log(erro);
+        }
+      );
+    }
   }
 
   salvaPerda(){
     if(this.perda_formulario.valid){
-      if(this.atualizar){
-        this.atualizaPerda();
-      }else{
+      if(this.criar){
         this.adicionaPerda();
+      }else{
+        this.atualizaPerda();
       }
     }else{
       console.log(this.perda_formulario)

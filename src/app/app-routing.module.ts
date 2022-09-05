@@ -6,7 +6,7 @@ import { PerdasComponent } from './perdas/perdas.component';
 const routes: Routes = [
   {path: '', redirectTo: 'perdas', pathMatch: 'full'},
   {path: 'perdas', component: PerdasComponent},
-  {path: 'perda', component: PerdaComponent}
+  {path: 'perda/:id', component: PerdaComponent}
 ];
 
 @NgModule({
