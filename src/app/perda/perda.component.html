@@ -39,14 +39,26 @@
   <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
     <mat-form-field fxFlex="48" class="example-full-width" appearance="outline">
       <mat-label>Tipo da Lavoura</mat-label>
-      <input type="text" matInput formControlName="tipo_lavoura" placeholder="Ex: Tchulengo">
+      <input type="text" matInput formControlName="tipo_lavoura" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" >
+        <mat-option *ngFor="let lavoura of lavouras" [value]="lavoura">
+          {{lavoura}}
+        </mat-option>
+      </mat-autocomplete>
       <mat-error *ngIf="perda_formulario.controls.tipo_lavoura.hasError('required')">
         Tipo da Lavoura é <strong>obrigatório</strong>
       </mat-error>
     </mat-form-field>
     <mat-form-field fxFlex="48" class="example-full-width" appearance="outline">
       <mat-label>Data da Colheita</mat-label>
-      <input type="date" matInput formControlName="data_colheira" placeholder="Ex: Tchulengo">
+      <input matInput formControlName="data_colheira" [matDatepicker]="picker"   placeholder="Ex: Tchulengo">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
       <mat-error *ngIf="perda_formulario.controls.data_colheira.hasError('required')">
         Data da Colheita é <strong>obrigatório</strong>
       </mat-error>
@@ -55,10 +67,31 @@
   <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
     <mat-form-field fxFlex="48" class="example-full-width" appearance="outline">
       <mat-label>Evento Ocorrido</mat-label>
-      <input type="text" matInput formControlName="evento_ocorrido" placeholder="Ex: Tchulengo">
+      <mat-select formControlName="evento_ocorrido" >
+        <mat-option value="CHUVA EXCESSIVA">CHUVA EXCESSIVA</mat-option>
+        <mat-option value="GEADA">GEADA</mat-option>
+        <mat-option value="GRANIZO">GRANIZO</mat-option>
+        <mat-option value="SECA">SECA</mat-option>
+        <mat-option value="VENDAVAL">VENDAVAL</mat-option>
+        <mat-option value="RAIO">RAIO</mat-option>
+      </mat-select>
       <mat-error *ngIf="perda_formulario.controls.evento_ocorrido.hasError('required')">
-        Evento Ocorrido é <strong>obrigatório</strong>
+        Evento ocorrido é <strong>obrigatório</strong>
       </mat-error>
     </mat-form-field>
+    <mat-form-field fxFlex="48" class="example-full-width" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input type="text" matInput formControlName="email" placeholder="Ex: Tchulengo">
+      <mat-error *ngIf="perda_formulario.controls.email.hasError('email') && !perda_formulario.controls.email.hasError('required')">
+        Por favor digite um email válido
+      </mat-error>
+      <mat-error *ngIf="perda_formulario.controls.email.hasError('required')">
+        Email é <strong>obrigatório</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div fxFlex="48" fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-raised-button color="warn" (click)="excluiPerda()">Excluir</button>
+    <button mat-raised-button color="primary" (click)="salvaPerda()">Salvar</button>
   </div>
 </form>
