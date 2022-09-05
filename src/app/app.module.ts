@@ -22,10 +22,18 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ConfirmacaoComponent } from './confirmacao/confirmacao.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
-  declarations: [AppComponent, PerdasComponent, PerdaComponent, ConfirmacaoComponent],
+  declarations: [
+    AppComponent,
+    PerdasComponent,
+    PerdaComponent,
+    ConfirmacaoComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -44,7 +52,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatNativeDateModule,
     MatSelectModule,
     MatAutocompleteModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-br' }],
   bootstrap: [AppComponent],

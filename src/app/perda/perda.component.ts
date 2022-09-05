@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { ConfirmacaoComponent } from '../confirmacao/confirmacao.component';
@@ -30,12 +31,12 @@ export class PerdaComponent implements OnInit {
 
   public lavouras: string[] = ['milho', 'soja', 'trigo', 'feijão']
 
-  constructor(private api: ApiService, private rota: Router, private rotaAtiva: ActivatedRoute, public dialog: MatDialog) {}
+  constructor(private api: ApiService, private rota: Router, private rotaAtiva: ActivatedRoute, public dialog: MatDialog, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     let id = Number(this.rotaAtiva.snapshot.paramMap.get('id'));
     if (id == 0){
-      this.criar = false;
+      this.criar = true;
     }else{
       this.api.getPerda(id).subscribe(
         (perda: Perda)=>{
@@ -50,15 +51,28 @@ export class PerdaComponent implements OnInit {
   }
 
   salvaPerda(){
-    if(this.perda_formulario.valid){
+    if(this.perda_formulario.valid && this.validaCpf(this.perda_formulario.controls.cpf.value)){
       if(this.criar){
         this.adicionaPerda();
       }else{
         this.atualizaPerda();
       }
     }else{
-      console.log(this.perda_formulario)
-      console.log("Formulário inválido")
+      if(!this.validaCpf(this.perda_formulario.controls.cpf.value)){
+        console.log(this.perda_formulario)
+        this.snackBar.open('Cpf Inválido', 'Entendi', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        })
+      }else{
+        console.log(this.perda_formulario)
+        this.snackBar.open('Preencha o formulário corretamente', 'Entendi', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        })
+      }
     }
   }
 
@@ -88,30 +102,67 @@ export class PerdaComponent implements OnInit {
     )
   }
 
-  excluiPerda(){
-    const dialogRef = this.dialog.open(ConfirmacaoComponent, {
-      data:{
-        titulo: 'Excluir comunicação de perda',
-        mensagem: 'Tem certeza que deseja excluir a comunicação de perda de nome ' + this.perda_formulario.controls.nome.value + ' ?',
-        confirmar: 'Excluir',
-        cancelar: 'Cancelar',
-      },
-      width: '30em'
-    });
+  validaCpf(cpf: string) {
+    if (typeof cpf !== "string") return false
+    cpf = cpf.replace(/[\s.-]*/igm, '')
+    if (
+        !cpf ||
+        cpf.length != 11 ||
+        cpf == "00000000000" ||
+        cpf == "11111111111" ||
+        cpf == "22222222222" ||
+        cpf == "33333333333" ||
+        cpf == "44444444444" ||
+        cpf == "55555555555" ||
+        cpf == "66666666666" ||
+        cpf == "77777777777" ||
+        cpf == "88888888888" ||
+        cpf == "99999999999"
+    ) {
+        return false
+    }
+    var soma = 0
+    var resto
+    for (var i = 1; i <= 9; i++)
+        soma = soma + parseInt(cpf.substring(i-1, i)) * (11 - i)
+    resto = (soma * 10) % 11
+    if ((resto == 10) || (resto == 11))  resto = 0
+    if (resto != parseInt(cpf.substring(9, 10)) ) return false
+    soma = 0
+    for (var i = 1; i <= 10; i++)
+        soma = soma + parseInt(cpf.substring(i-1, i)) * (12 - i)
+    resto = (soma * 10) % 11
+    if ((resto == 10) || (resto == 11))  resto = 0
+    if (resto != parseInt(cpf.substring(10, 11) ) ) return false
+    return true
+}
 
-    dialogRef.afterClosed().subscribe(confirmacao => {
-      if(confirmacao){
-        this.api.excluirPerda(this.perda_formulario.controls.id.value).subscribe(
-          (resultado)=>{
-            console.log(resultado)
-            this.rota.navigate(['perdas'])
-          },
-          (erro)=>{
-            console.log(erro)
-          }
-        )
-      }
-    });
+  excluiPerda(){
+    if (!this.criar){
+      const dialogRef = this.dialog.open(ConfirmacaoComponent, {
+        data:{
+          titulo: 'Excluir comunicação de perda',
+          mensagem: 'Tem certeza que deseja excluir a comunicação de perda de nome ' + this.perda_formulario.controls.nome.value + ' ?',
+          confirmar: 'Excluir',
+          cancelar: 'Cancelar',
+        },
+        width: '30em'
+      });
+
+      dialogRef.afterClosed().subscribe(confirmacao => {
+        if(confirmacao){
+          this.api.excluirPerda(this.perda_formulario.controls.id.value).subscribe(
+            (resultado)=>{
+              console.log(resultado)
+              this.rota.navigate(['perdas'])
+            },
+            (erro)=>{
+              console.log(erro)
+            }
+          )
+        }
+      });
+    }
   }
 
 }

@@ -14,7 +14,7 @@
     </mat-form-field>
     <mat-form-field fxFlex="48" class="example-full-width" appearance="outline">
       <mat-label>Cpf</mat-label>
-      <input type="text" matInput formControlName="cpf" placeholder="Ex: Tchulengo">
+      <input type="text" mask="000.000.000-00" matInput formControlName="cpf" placeholder="Ex: Tchulengo">
       <mat-error *ngIf="perda_formulario.controls.cpf.hasError('required')">
         Cpf é <strong>obrigatório</strong>
       </mat-error>
@@ -91,7 +91,12 @@
     </mat-form-field>
   </div>
   <div fxFlex="48" fxLayout="row" fxLayoutAlign="space-between center">
-    <button mat-raised-button color="warn" (click)="excluiPerda()">Excluir</button>
+    <div *ngIf="!criar">
+      <button mat-raised-button color="warn" (click)="excluiPerda()">Excluir</button>
+    </div>
+    <div *ngIf="criar">
+      <button mat-raised-button color="warn" disabled="true">Excluir</button>
+    </div>
     <button mat-raised-button color="primary" (click)="salvaPerda()">Salvar</button>
   </div>
 </form>
