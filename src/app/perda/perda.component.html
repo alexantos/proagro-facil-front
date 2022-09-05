@@ -1,5 +1,5 @@
 <div fxLayout="row" fxLayoutAlign="space-between center">
-  <h1>Perda</h1>
+  <h1>Informar Perda</h1>
   <!-- <button mat-raised-button color="primary" (click)="adicionarPerda()">Adicionar</button> -->
 </div>
 
@@ -92,11 +92,11 @@
   </div>
   <div fxFlex="48" fxLayout="row" fxLayoutAlign="space-between center">
     <div *ngIf="!criar">
-      <button mat-raised-button color="warn" (click)="excluiPerda()">Excluir</button>
+      <button mat-raised-button color="warn" (click)="excluiPerda()">Excluir <mat-icon>delete</mat-icon></button>
     </div>
     <div *ngIf="criar">
-      <button mat-raised-button color="warn" disabled="true">Excluir</button>
+      <button mat-raised-button color="warn" disabled="true">Excluir <mat-icon>delete</mat-icon></button>
     </div>
-    <button mat-raised-button color="primary" (click)="salvaPerda()">Salvar</button>
+    <button mat-raised-button color="primary" (click)="salvaPerda()" class="botao-amarelo">Salvar<mat-icon>check</mat-icon></button>
   </div>
 </form>

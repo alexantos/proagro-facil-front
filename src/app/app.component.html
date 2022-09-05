@@ -1,9 +1,6 @@
-
-
 <mat-drawer-container autosize>
   <mat-drawer mode="side" opened>
-    <br>
-    <br>
+    <img src="assets/imagens/logo.png" fxLayout="row" fxLayoutAlign="center center" width="200em" style="padding-top: 0.5em;">
     <mat-selection-list #shoes [multiple]="false" >
       <mat-list-option routerLink="/perdas" >
         <mat-icon mat-list-icon>add</mat-icon>
@@ -16,17 +13,13 @@
     </mat-selection-list>
   </mat-drawer>
   <mat-drawer-content>
-    <mat-toolbar color="primary">
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-toolbar color="primary" class="barra" fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button>
-    <span>My App</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
+    <span>Comunicação de Perda</span>
+    <button mat-icon-button>
+      <mat-icon>manage_accounts</mat-icon>
     </button>
   </mat-toolbar>
     <div class="container">
