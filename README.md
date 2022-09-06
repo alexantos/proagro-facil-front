@@ -1,5 +1,5 @@
 # Proagro Fácil Front (Angular)
-Este projeto utiliza Angular Cli na versão version 12.2.2
+Este projeto utiliza Angular Cli na versão 12.2.2 
 
 # Necessita das seguintes dependências:
 Node Js https://nodejs.org/en/
