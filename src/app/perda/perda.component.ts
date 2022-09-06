@@ -79,8 +79,9 @@ export class PerdaComponent implements OnInit {
   adicionaPerda(){
     let perda: Perda = this.perda_formulario.value
     this.api.salvaPerda(perda).subscribe(
-      (resultado)=>{
-        console.log(resultado)
+      (perda: Perda)=>{
+        console.log(perda)
+        this.verificaDistancia(perda)
         this.rota.navigate(['perdas'])
       },
       (erro)=>{
@@ -92,12 +93,33 @@ export class PerdaComponent implements OnInit {
   atualizaPerda(){
     let perda: Perda = this.perda_formulario.value
     this.api.atualizaPerda(perda).subscribe(
-      (resultado)=>{
-        console.log(resultado)
+      (perda: Perda)=>{
+        console.log(perda)
+        this.verificaDistancia(perda)
         this.rota.navigate(['perdas'])
       },
       (erro)=>{
         console.log(erro);
+      }
+    )
+  }
+
+  verificaDistancia(perda: Perda){
+    this.api.verificaDistancia(perda.id).subscribe(
+      (resultado: any)=>{
+        if (resultado?.distancia_menor){
+          const dialogRef = this.dialog.open(ConfirmacaoComponent, {
+            data:{
+              titulo: 'Notificação de distância',
+              mensagem: 'Foi cadastrado no dia de hoje uma Comunicação de Perda em um raio de 10km',
+              confirmar: 'Ok',
+            },
+            width: '30em'
+          });
+        }
+      },
+      (erro)=>{
+        console.log(erro)
       }
     )
   }
@@ -135,7 +157,7 @@ export class PerdaComponent implements OnInit {
     if ((resto == 10) || (resto == 11))  resto = 0
     if (resto != parseInt(cpf.substring(10, 11) ) ) return false
     return true
-}
+  }
 
   excluiPerda(){
     if (!this.criar){

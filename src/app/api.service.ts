@@ -41,4 +41,8 @@ export class ApiService {
     return this.http.get<Grafico[]>(this.url + '/grafico/');
   }
 
+  public verificaDistancia(id: number): Observable<any>{
+    return this.http.get<any>(this.url + '/distancia/' + String(id) + '/');
+  }
+
 }
