@@ -9,4 +9,4 @@ Angular Cli https://angular.io/cli
 `npm install` para instalar as dependências do projeto
 `npm run start` ou `ng serve` para rodar o projeto localmente na url/porta `http://localhost:4200/`
 
-# É ncessário estar com o proagro-facil-back rodando localmente na url/porta `http://localhost:8000/`
+É ncessário estar com o proagro-facil-back rodando localmente na url/porta `http://localhost:8000/`
