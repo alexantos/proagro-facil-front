@@ -1,11 +1,18 @@
 <br>
 <div fxLayout="row" fxLayoutAlign="space-between center">
   <h1>Perdas</h1>
-  <button mat-raised-button color="primary" class="botao-amarelo" (click)="adicionarPerda()">Adicionar<mat-icon>add_circle</mat-icon></button>
+  <div fxFlex="30"  fxLayoutAlign="space-between center">
+    <mat-form-field appearance="legacy">
+      <mat-label>Cpf</mat-label>
+      <input type="text" mask="000.000.000-00" matInput [formControl]="cpf">
+    </mat-form-field>
+    <button mat-raised-button color="primary" class="botao-amarelo" (click)="adicionarPerda()">Adicionar<mat-icon>
+        add_circle</mat-icon></button>
+  </div>
 </div>
 <br>
 <div class="tabela">
-  <table mat-table [dataSource]="perdas" class="mat-elevation-z8">
+  <table mat-table [dataSource]="perdas_filtradas" class="mat-elevation-z8">
     <ng-container matColumnDef="nome">
       <th mat-header-cell *matHeaderCellDef>Nome</th>
       <td mat-cell *matCellDef="let perda">{{ perda.nome }}</td>
@@ -28,7 +35,9 @@
     </ng-container>
     <ng-container matColumnDef="editar">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let perda"><button mat-icon-button><mat-icon>more_horiz</mat-icon></button></td>
+      <td mat-cell *matCellDef="let perda"><button mat-icon-button>
+          <mat-icon>more_horiz</mat-icon>
+        </button></td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="colunas"></tr>
     <tr mat-row *matRowDef="let perda; columns: colunas" (click)="atualizarPerda(perda)"></tr>

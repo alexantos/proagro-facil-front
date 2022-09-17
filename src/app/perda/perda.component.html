@@ -41,7 +41,7 @@
     <mat-form-field fxFlex="48" class="example-full-width" appearance="outline">
       <mat-label>Tipo da Lavoura</mat-label>
       <input type="text" matInput formControlName="tipo_lavoura" [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete" >
+      <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let lavoura of lavouras" [value]="lavoura">
           {{lavoura}}
         </mat-option>
@@ -52,7 +52,7 @@
     </mat-form-field>
     <mat-form-field fxFlex="48" class="example-full-width" appearance="outline">
       <mat-label>Data da Colheita</mat-label>
-      <input matInput formControlName="data_colheira" [matDatepicker]="picker"   placeholder="Ex: Tchulengo">
+      <input matInput formControlName="data_colheira" [matDatepicker]="picker" placeholder="Ex: Tchulengo">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker>
         <mat-datepicker-actions>
@@ -68,7 +68,7 @@
   <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100">
     <mat-form-field fxFlex="48" class="example-full-width" appearance="outline">
       <mat-label>Evento Ocorrido</mat-label>
-      <mat-select formControlName="evento_ocorrido" >
+      <mat-select formControlName="evento_ocorrido">
         <mat-option value="CHUVA EXCESSIVA">CHUVA EXCESSIVA</mat-option>
         <mat-option value="GEADA">GEADA</mat-option>
         <mat-option value="GRANIZO">GRANIZO</mat-option>
@@ -83,7 +83,8 @@
     <mat-form-field fxFlex="48" class="example-full-width" appearance="outline">
       <mat-label>Email</mat-label>
       <input type="text" matInput formControlName="email" placeholder="Ex: Tchulengo">
-      <mat-error *ngIf="perda_formulario.controls.email.hasError('email') && !perda_formulario.controls.email.hasError('required')">
+      <mat-error
+        *ngIf="perda_formulario.controls.email.hasError('email') && !perda_formulario.controls.email.hasError('required')">
         Por favor digite um email válido
       </mat-error>
       <mat-error *ngIf="perda_formulario.controls.email.hasError('required')">
@@ -98,6 +99,7 @@
     <div *ngIf="criar">
       <button mat-raised-button color="warn" disabled="true">Excluir <mat-icon>delete</mat-icon></button>
     </div>
-    <button mat-raised-button color="primary" (click)="salvaPerda()" class="botao-amarelo">Salvar<mat-icon>check</mat-icon></button>
+    <button mat-raised-button color="primary" (click)="salvaPerda()" class="botao-amarelo">Salvar<mat-icon>check
+      </mat-icon></button>
   </div>
 </form>
